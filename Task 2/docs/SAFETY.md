@@ -1,24 +1,35 @@
 # Supervisor Safety Sign-Off
 
-Project:
-Task 2 – Digital I/O, Serial Debug & Relay Safety
+## Task
 
-Safety Checks Completed
+Task 2 – Digital I/O, Serial Debug and Relay Safety
 
-✔ Relay tested before valve connection
+## Safety Checklist
 
-✔ Valve powered through relay only
+[✓] Arduino powered correctly
 
-✔ Arduino GPIO not connected directly to valve
+[✓] Wiring checked before power ON
 
-✔ Emergency stop verified
+[✓] LED connected through resistor
 
-✔ Startup state verified OFF
+[✓] Push button connected using INPUT_PULLUP
 
-Supervisor Signature:
+[✓] Relay module tested before valve connection
 
-____________________
+[✓] Solenoid valve not connected directly to Arduino pin
 
-Date:
+[✓] Emergency stop tested
 
-____________________
+[✓] Valve OFF during startup
+
+## Observations
+
+All tests were completed successfully without hardware damage.
+
+## Supervisor Sign-Off
+
+Name: ___________________
+
+Signature: ___________________
+
+Date: ___________________
