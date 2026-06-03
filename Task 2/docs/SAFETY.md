@@ -26,10 +26,4 @@ Task 2 – Digital I/O, Serial Debug and Relay Safety
 
 All tests were completed successfully without hardware damage.
 
-## Supervisor Sign-Off
 
-Name: ___________________
-
-Signature: ___________________
-
-Date: ___________________
