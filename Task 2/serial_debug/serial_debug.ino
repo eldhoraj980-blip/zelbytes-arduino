@@ -12,7 +12,7 @@ void loop() {
     char c = Serial.read();
     switch (c) {
       case '?': Serial.println(F("l=LED on, o=off")); break;
-      case 'l': digitalWrite(LED_PIN, HIGH); Serial.println(F("ON")); break;
+      case 'i': digitalWrite(LED_PIN, HIGH); Serial.println(F("ON")); break;
       case 'o': digitalWrite(LED_PIN, LOW);  Serial.println(F("OFF")); break;
       default:  Serial.println(F("Unknown")); break;
     }
