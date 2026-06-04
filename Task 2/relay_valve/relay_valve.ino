@@ -18,5 +18,5 @@ void loop() {
   if (!Serial.available()) return;
   char c = Serial.read();
   if (c == 'e') { setValve(false); Serial.println(F("ESTOP")); }
-  if (c == 'v') { /* demo only — supervisor present */ setValve(true); delay(200); setValve(false); }
+  if (c == 'v') { /* demo only — supervisor present */ setValve(true); delay(2000); setValve(false); }
 }
