@@ -12,7 +12,7 @@ Set up the Arduino development environment, upload a Blink sketch, and verify se
 ## Hardware Used
 - Arduino Uno
 - USB Cable
-- Computer with Arduino IDE 2.x
+- Computer with Arduino IDE 2.3.9
 
 ## Result
 Successfully uploaded Blink sketch and verified Serial Monitor output.
