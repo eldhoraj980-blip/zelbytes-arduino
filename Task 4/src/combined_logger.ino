@@ -1,86 +1,144 @@
 #include <DHT.h>
 
-// DHT22
-#define DHT_PIN 4
-#define DHT_TYPE DHT22
-DHT dht(DHT_PIN, DHT_TYPE);
+#define DHTPIN 2
+#define DHTTYPE DHT22
 
-// Ultrasonic
-const int trigPin = 9;
-const int echoPin = 10;
+#define LDR_PIN A0
+#define SOIL_PIN A1
 
-// Soil Moisture
-const int MOIST_PIN = A1;
-const int MOIST_PWR = 7;
+#define TRIG_PIN 9
+#define ECHO_PIN 10
 
-// Functions
-int readMoistRaw() {
-  digitalWrite(MOIST_PWR, HIGH);
-  delay(10);
+DHT dht(DHTPIN, DHTTYPE);
 
-  int value = analogRead(MOIST_PIN);
+// Sensor values
+int lightRaw = 0;
+float temperature = NAN;
+float humidity = NAN;
+float distanceCm = NAN;
+int soilRaw = 0;
+int soilPct = 0;
 
-  digitalWrite(MOIST_PWR, LOW);
+// Timers
+unsigned long lastLdrRead = 0;
+unsigned long lastDhtRead = 0;
+unsigned long lastUltraRead = 0;
+unsigned long lastSoilRead = 0;
+unsigned long lastPrint = 0;
 
-  return value;
-}
+// Intervals (ms)
+const unsigned long LDR_INTERVAL = 500;
+const unsigned long DHT_INTERVAL = 2000;
+const unsigned long ULTRA_INTERVAL = 500;
+const unsigned long SOIL_INTERVAL = 1000;
+const unsigned long PRINT_INTERVAL = 1000;
 
-float readDistance() {
-
-  digitalWrite(trigPin, LOW);
+float readUltrasonic()
+{
+  digitalWrite(TRIG_PIN, LOW);
   delayMicroseconds(2);
 
-  digitalWrite(trigPin, HIGH);
+  digitalWrite(TRIG_PIN, HIGH);
   delayMicroseconds(10);
 
-  digitalWrite(trigPin, LOW);
+  digitalWrite(TRIG_PIN, LOW);
 
-  long duration = pulseIn(echoPin, HIGH, 30000);
+  long duration = pulseIn(ECHO_PIN, HIGH, 30000);
 
-  if (duration == 0) {
+  if (duration == 0)
+  {
     return -1;
   }
 
   return duration * 0.0343 / 2.0;
 }
 
-void setup() {
-
+void setup()
+{
   Serial.begin(9600);
+
+  pinMode(TRIG_PIN, OUTPUT);
+  pinMode(ECHO_PIN, INPUT);
 
   dht.begin();
 
-  pinMode(trigPin, OUTPUT);
-  pinMode(echoPin, INPUT);
-
-  pinMode(MOIST_PWR, OUTPUT);
-  digitalWrite(MOIST_PWR, LOW);
-
-  Serial.println("millis,temp,humidity,distance_cm,soil_raw");
+  Serial.println("time_ms,light_raw,temp,hum,distance_cm,soil_pct");
 }
 
-void loop() {
+void loop()
+{
+  unsigned long currentMillis = millis();
 
-  float humidity = dht.readHumidity();
-  float temperature = dht.readTemperature();
+  // LDR
+  if (currentMillis - lastLdrRead >= LDR_INTERVAL)
+  {
+    lastLdrRead = currentMillis;
+    lightRaw = analogRead(LDR_PIN);
+  }
 
-  float distance = readDistance();
+  // DHT22
+  if (currentMillis - lastDhtRead >= DHT_INTERVAL)
+  {
+    lastDhtRead = currentMillis;
 
-  int moistRaw = readMoistRaw();
+    float h = dht.readHumidity();
+    float t = dht.readTemperature();
 
-  Serial.print(millis());
-  Serial.print(",");
+    if (!isnan(h))
+      humidity = h;
 
-  Serial.print(temperature, 1);
-  Serial.print(",");
+    if (!isnan(t))
+      temperature = t;
+  }
 
-  Serial.print(humidity, 1);
-  Serial.print(",");
+  // Ultrasonic
+  if (currentMillis - lastUltraRead >= ULTRA_INTERVAL)
+  {
+    lastUltraRead = currentMillis;
 
-  Serial.print(distance, 1);
-  Serial.print(",");
+    float d = readUltrasonic();
 
-  Serial.println(moistRaw);
+    if (d >= 0)
+      distanceCm = d;
+  }
 
-  delay(2000);
+  // Soil Moisture
+  if (currentMillis - lastSoilRead >= SOIL_INTERVAL)
+  {
+    lastSoilRead = currentMillis;
+
+    soilRaw = analogRead(SOIL_PIN);
+
+    // Adjust these values after calibration
+    soilPct = map(soilRaw, 1023, 300, 0, 100);
+
+    if (soilPct < 0)
+      soilPct = 0;
+
+    if (soilPct > 100)
+      soilPct = 100;
+  }
+
+  // CSV Output
+  if (currentMillis - lastPrint >= PRINT_INTERVAL)
+  {
+    lastPrint = currentMillis;
+
+    Serial.print(currentMillis);
+    Serial.print(",");
+
+    Serial.print(lightRaw);
+    Serial.print(",");
+
+    Serial.print(temperature, 1);
+    Serial.print(",");
+
+    Serial.print(humidity, 1);
+    Serial.print(",");
+
+    Serial.print(distanceCm, 1);
+    Serial.print(",");
+
+    Serial.println(soilPct);
+  }
 }
