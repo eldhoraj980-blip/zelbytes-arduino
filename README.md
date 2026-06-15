@@ -9,5 +9,7 @@ Board: Arduino Uno R3 Compatible
 - Task2: Git for Firmware & Project Structure.
 - Task3: Manual Irrigation Toggle.
 - Task4: Analog Sensor Calibration Suite.
+- Task 5: Threshold Logic & State Machine
+- Task 6: PWM Motor & Interrupt E-Stop
 
 This repository contains all internship tasks, code, documentation, and wiring images.
