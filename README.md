@@ -11,5 +11,6 @@ Board: Arduino Uno R3 Compatible
 - Task4: Analog Sensor Calibration Suite.
 - Task 5: Threshold Logic & State Machine
 - Task 6: PWM Motor & Interrupt E-Stop
+- Task 7: CSV Data Logging
 
 This repository contains all internship tasks, code, documentation, and wiring images.
