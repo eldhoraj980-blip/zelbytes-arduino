@@ -1,0 +1,434 @@
+--------------------
+Time: 0 s
+Temp: 22.7 C
+Humidity: 49.9 %
+Soil Moisture: 9 %
+Light Level: 100 %
+
+--------------------
+Time: 0 s
+Temp: 27.3 C
+Humidity: 50.8 %
+Soil Moisture: 9 %
+Light Level: 100 %
+
+--------------------
+Time: 5 s
+Temp: 23.0 C
+Humidity: 52.2 %
+Soil Moisture: 9 %
+Light Level: 100 %
+
+--------------------
+Time: 10 s
+Temp: 24.4 C
+Humidity: 52.8 %
+Soil Moisture: 9 %
+Light Level: 99 %
+
+--------------------
+Time: 15 s
+Temp: 24.3 C
+Humidity: 55.9 %
+Soil Moisture: 9 %
+Light Level: 99 %
+
+--------------------
+Time: 20 s
+Temp: 22.0 C
+Humidity: 61.5 %
+Soil Moisture: 9 %
+Light Level: 99 %
+
+--------------------
+Time: 25 s
+Temp: 23.2 C
+Humidity: 49.2 %
+Soil Moisture: 9 %
+Light Level: 100 %
+
+--------------------
+Time: 30 s
+Temp: 24.7 C
+Humidity: 55.3 %
+Soil Moisture: 9 %
+Light Level: 99 %
+
+--------------------
+Time: 35 s
+Temp: 22.7 C
+Humidity: 57.9 %
+Soil Moisture: 9 %
+Light Level: 99 %
+
+--------------------
+Time: 40 s
+Temp: 26.0 C
+Humidity: 46.2 %
+Soil Moisture: 9 %
+Light Level: 100 %
+
+--------------------
+Time: 45 s
+Temp: 22.3 C
+Humidity: 61.9 %
+Soil Moisture: 9 %
+Light Level: 99 %
+
+--------------------
+Time: 50 s
+Temp: 22.9 C
+Humidity: 60.7 %
+Soil Moisture: 9 %
+Light Level: 100 %
+
+--------------------
+Time: 55 s
+Temp: 26.0 C
+Humidity: 58.3 %
+Soil Moisture: 9 %
+Light Level: 99 %
+
+--------------------
+Time: 60 s
+Temp: 25.9 C
+Humidity: 52.8 %
+Soil Moisture: 9 %
+Light Level: 100 %
+
+--------------------
+Time: 65 s
+Temp: 27.6 C
+Humidity: 58.5 %
+Soil Moisture: 9 %
+Light Level: 98 %
+
+--------------------
+Time: 70 s
+Temp: 25.7 C
+Humidity: 47.6 %
+Soil Moisture: 9 %
+Light Level: 100 %
+
+--------------------
+Time: 75 s
+Temp: 25.2 C
+Humidity: 51.7 %
+Soil Moisture: 9 %
+Light Level: 100 %
+
+--------------------
+Time: 80 s
+Temp: 27.0 C
+Humidity: 48.3 %
+Soil Moisture: 9 %
+Light Level: 99 %
+
+--------------------
+Time: 85 s
+Temp: 23.9 C
+Humidity: 59.9 %
+Soil Moisture: 9 %
+Light Level: 98 %
+
+--------------------
+Time: 90 s
+Temp: 25.9 C
+Humidity: 47.1 %
+Soil Moisture: 9 %
+Light Level: 99 %
+
+--------------------
+Time: 95 s
+Temp: 22.7 C
+Humidity: 52.2 %
+Soil Moisture: 9 %
+Light Level: 100 %
+
+--------------------
+Time: 100 s
+Temp: 23.3 C
+Humidity: 58.6 %
+Soil Moisture: 9 %
+Light Level: 100 %
+
+--------------------
+Time: 105 s
+Temp: 22.5 C
+Humidity: 59.5 %
+Soil Moisture: 9 %
+Light Level: 99 %
+
+--------------------
+Time: 110 s
+Temp: 22.8 C
+Humidity: 54.1 %
+Soil Moisture: 9 %
+Light Level: 98 %
+
+--------------------
+Time: 115 s
+Temp: 27.4 C
+Humidity: 60.7 %
+Soil Moisture: 9 %
+Light Level: 99 %
+
+--------------------
+Time: 120 s
+Temp: 26.1 C
+Humidity: 60.3 %
+Soil Moisture: 9 %
+Light Level: 99 %
+
+--------------------
+Time: 125 s
+Temp: 24.8 C
+Humidity: 59.4 %
+Soil Moisture: 5 %
+Light Level: 100 %
+
+--------------------
+Time: 130 s
+Temp: 24.8 C
+Humidity: 54.0 %
+Soil Moisture: 6 %
+Light Level: 100 %
+
+--------------------
+Time: 135 s
+Temp: 24.4 C
+Humidity: 64.6 %
+Soil Moisture: 6 %
+Light Level: 99 %
+
+--------------------
+Time: 140 s
+Temp: 25.0 C
+Humidity: 55.3 %
+Soil Moisture: 6 %
+Light Level: 98 %
+
+--------------------
+Time: 145 s
+Temp: 24.2 C
+Humidity: 51.6 %
+Soil Moisture: 6 %
+Light Level: 100 %
+
+--------------------
+Time: 150 s
+Temp: 22.9 C
+Humidity: 47.4 %
+Soil Moisture: 7 %
+Light Level: 99 %
+
+--------------------
+Time: 155 s
+Temp: 26.1 C
+Humidity: 50.3 %
+Soil Moisture: 6 %
+Light Level: 99 %
+
+--------------------
+Time: 160 s
+Temp: 27.7 C
+Humidity: 45.8 %
+Soil Moisture: 6 %
+Light Level: 100 %
+
+--------------------
+Time: 165 s
+Temp: 26.8 C
+Humidity: 58.3 %
+Soil Moisture: 6 %
+Light Level: 99 %
+
+--------------------
+Time: 170 s
+Temp: 27.8 C
+Humidity: 63.1 %
+Soil Moisture: 6 %
+Light Level: 99 %
+
+--------------------
+Time: 175 s
+Temp: 27.5 C
+Humidity: 46.3 %
+Soil Moisture: 6 %
+Light Level: 100 %
+
+--------------------
+Time: 180 s
+Temp: 26.5 C
+Humidity: 46.4 %
+Soil Moisture: 6 %
+Light Level: 99 %
+
+--------------------
+Time: 185 s
+Temp: 24.3 C
+Humidity: 58.6 %
+Soil Moisture: 6 %
+Light Level: 100 %
+
+--------------------
+Time: 190 s
+Temp: 22.5 C
+Humidity: 51.9 %
+Soil Moisture: 5 %
+Light Level: 100 %
+
+--------------------
+Time: 195 s
+Temp: 23.5 C
+Humidity: 54.4 %
+Soil Moisture: 6 %
+Light Level: 100 %
+
+--------------------
+Time: 200 s
+Temp: 22.9 C
+Humidity: 55.1 %
+Soil Moisture: 7 %
+Light Level: 100 %
+
+--------------------
+Time: 205 s
+Temp: 23.7 C
+Humidity: 64.5 %
+Soil Moisture: 7 %
+Light Level: 99 %
+
+--------------------
+Time: 210 s
+Temp: 26.5 C
+Humidity: 45.4 %
+Soil Moisture: 7 %
+Light Level: 100 %
+
+--------------------
+Time: 215 s
+Temp: 27.1 C
+Humidity: 54.8 %
+Soil Moisture: 6 %
+Light Level: 100 %
+
+--------------------
+Time: 220 s
+Temp: 26.8 C
+Humidity: 57.3 %
+Soil Moisture: 6 %
+Light Level: 100 %
+
+--------------------
+Time: 225 s
+Temp: 22.5 C
+Humidity: 53.2 %
+Soil Moisture: 6 %
+Light Level: 100 %
+
+--------------------
+Time: 230 s
+Temp: 23.2 C
+Humidity: 61.6 %
+Soil Moisture: 5 %
+Light Level: 100 %
+
+--------------------
+Time: 235 s
+Temp: 23.6 C
+Humidity: 58.7 %
+Soil Moisture: 5 %
+Light Level: 99 %
+
+--------------------
+Time: 240 s
+Temp: 25.8 C
+Humidity: 59.4 %
+Soil Moisture: 6 %
+Light Level: 100 %
+
+--------------------
+Time: 245 s
+Temp: 24.1 C
+Humidity: 54.7 %
+Soil Moisture: 7 %
+Light Level: 99 %
+
+--------------------
+Time: 250 s
+Temp: 23.1 C
+Humidity: 47.8 %
+Soil Moisture: 7 %
+Light Level: 100 %
+
+--------------------
+Time: 255 s
+Temp: 23.7 C
+Humidity: 60.8 %
+Soil Moisture: 7 %
+Light Level: 100 %
+
+--------------------
+Time: 260 s
+Temp: 25.7 C
+Humidity: 64.7 %
+Soil Moisture: 7 %
+Light Level: 99 %
+
+--------------------
+Time: 265 s
+Temp: 27.4 C
+Humidity: 55.4 %
+Soil Moisture: 7 %
+Light Level: 99 %
+
+--------------------
+Time: 270 s
+Temp: 24.9 C
+Humidity: 48.1 %
+Soil Moisture: 7 %
+Light Level: 100 %
+
+--------------------
+Time: 275 s
+Temp: 22.5 C
+Humidity: 62.5 %
+Soil Moisture: 8 %
+Light Level: 100 %
+
+--------------------
+Time: 280 s
+Temp: 23.5 C
+Humidity: 54.8 %
+Soil Moisture: 8 %
+Light Level: 100 %
+
+--------------------
+Time: 285 s
+Temp: 24.2 C
+Humidity: 64.9 %
+Soil Moisture: 8 %
+Light Level: 100 %
+
+--------------------
+Time: 290 s
+Temp: 22.8 C
+Humidity: 46.2 %
+Soil Moisture: 8 %
+Light Level: 100 %
+
+--------------------
+Time: 295 s
+Temp: 22.0 C
+Humidity: 60.7 %
+Soil Moisture: 7 %
+Light Level: 100 %
+
+--------------------
+Time: 300 s
+Temp: 27.4 C
+Humidity: 45.8 %
+Soil Moisture: 6 %
+Light Level: 100 %
+
