@@ -62,4 +62,8 @@ void loop() {
     Serial.print(",");
     Serial.println(lightPercent);
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> ff8421c (Task 8)
