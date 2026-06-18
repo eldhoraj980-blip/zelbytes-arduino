@@ -9,11 +9,11 @@
 
 const int DRY_THRESHOLD = 2000;
 
-const char* ssid = "iQOO Z10 5G";
-const char* password = "helloworld";
+const char* ssid = "SSID ID";
+const char* password = "PASSWORD ";
 
-const char* apiKey = "zil_dpcfkaarcd3irmuvdq1k2xkhecn0w3hf";
-const char* serverURL = "https://careers.zelbytes.com/api/iot-lab/v1/telemetry";
+const char* apiKey = "YOUR API ID";
+const char* serverURL = "URL ";
 
 bool pumpState = false;
 bool manualMode = false;
