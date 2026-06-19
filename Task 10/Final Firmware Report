@@ -53,6 +53,13 @@ Main goals of the project:
 ---
 
 # 3. Hardware Architecture
+# 4. Hardware Setup Images
+
+## Hardware Prototype
+![Hardware Setup](../images/hardware.jpg)
+
+## Dashboard Interface
+![Dashboard](../images/dashboard.jpg)
 
 The system contains three major sections:
 
