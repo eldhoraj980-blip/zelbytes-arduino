@@ -2,10 +2,10 @@
 
 ## Intern Details
 
-**Name:** Eldho Raj
-**Branch:** Electronics and Communication Engineering
-**Platform:** Arduino IDE
-**Project:** Smart Grow Bench Irrigation System
+- **Name:** Eldho Raj
+- **Branch:** Electronics and Communication Engineering
+- **Platform:** Arduino IDE
+- **Project:** Smart Grow Bench Irrigation System
 
 ---
 
