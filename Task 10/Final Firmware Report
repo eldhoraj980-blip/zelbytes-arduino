@@ -12,11 +12,6 @@
 ## Repository
 
 **GitHub Repository:** `zelbytes-arduino`
-# Final Firmware Report – Automated Grow Bench Project
-
-## Repository
-
-**GitHub Repository:** `zelbytes-arduino`
 
 ---
 
@@ -53,15 +48,8 @@ Main goals of the project:
 ---
 
 # 3. Hardware Architecture
-# 4. Hardware Setup Images
 
-## Hardware Prototype
-![Hardware Setup](../images/hardware.jpg)
-
-## Dashboard Interface
-![Dashboard](../images/dashboard.jpg)
-
-The system contains three major sections:
+The system contains three major sections.
 
 ## Sensor Layer
 
@@ -74,6 +62,18 @@ ESP32 processes sensor data and decides whether irrigation is needed.
 ## Actuation Layer
 
 Relay controls the solenoid valve to allow or stop water flow.
+
+## Dashboard Interface
+
+The dashboard provides real-time visualization of soil moisture percentage, relay control, historical logs, and telemetry monitoring.
+
+![Dashboard](../images/dashboard.jpg)
+
+## Hardware Prototype
+
+The physical implementation of the grow-bench system is shown below.
+
+![Hardware Setup](../images/hardware.jpg)
 
 ---
 
@@ -112,8 +112,6 @@ Relay controls the solenoid valve to allow or stop water flow.
 
 # 5. Firmware Features
 
-The firmware includes the following features.
-
 ## Automatic Irrigation
 
 The ESP32 reads soil moisture continuously.
@@ -146,7 +144,7 @@ This allows testing without changing soil conditions.
 
 ## Serial Commands
 
-Three serial commands are supported:
+Three serial commands are supported.
 
 ### STATUS
 
@@ -181,21 +179,9 @@ ESP32 runs a local HTTP server on port 80.
 
 Available endpoints:
 
-### Turn ON
-
 ```text
 /on
-```
-
-### Turn OFF
-
-```text
 /off
-```
-
-### Check Status
-
-```text
 /status
 ```
 
@@ -269,7 +255,7 @@ Decision:
 
 ### Observation
 
-This sensor showed inverted behavior compared to many common soil sensors, where wet readings are usually lower than dry readings. Calibration confirmed the sensor behavior for this setup.
+This sensor showed inverted behavior compared to many common soil sensors, where wet readings are usually lower than dry readings.
 
 ---
 
@@ -309,10 +295,9 @@ Upload Telemetry
 
 Result:
 
-* Sensor successfully produced analog readings.
+* Sensor successfully produced analog readings
 
-Status:
-PASS
+Status: PASS
 
 ---
 
@@ -327,8 +312,7 @@ Result:
 * Relay activated
 * Solenoid valve opened
 
-Status:
-PASS
+Status: PASS
 
 ---
 
@@ -342,8 +326,7 @@ Result:
 
 * Valve toggled manually
 
-Status:
-PASS
+Status: PASS
 
 ---
 
@@ -359,8 +342,7 @@ Result:
 
 * All commands worked correctly
 
-Status:
-PASS
+Status: PASS
 
 ---
 
@@ -373,13 +355,11 @@ Observed HTTP response:
 ```
 
 Interpretation:
-HTTP 202 means:
 
 * Request accepted by server
 * Processing occurs asynchronously
 
-Status:
-PASS
+Status: PASS
 
 ---
 
@@ -390,8 +370,7 @@ Result:
 * LED ON when valve active
 * LED OFF when valve inactive
 
-Status:
-PASS
+Status: PASS
 
 ---
 
@@ -403,7 +382,7 @@ Soil sensor values may fluctuate slightly.
 
 Impact:
 
-* Relay may switch frequently near threshold.
+* Relay may switch frequently near threshold
 
 ---
 
@@ -413,7 +392,7 @@ Mechanical relay introduces switching delay.
 
 Impact:
 
-* Not ideal for fast control loops.
+* Not ideal for fast control loops
 
 ---
 
@@ -475,9 +454,7 @@ Solenoid valve:
 * External supply
 
 Important:
-Valve should never be powered directly from ESP32 GPIO.
-
-Relay isolation protects controller.
+Valve should never be powered directly from ESP32 GPIO. Relay isolation protects controller.
 
 ---
 
@@ -504,8 +481,6 @@ Install these libraries:
 
 ## Board Settings
 
-Select:
-
 ```text
 Board: ESP32 Dev Module
 ```
@@ -516,21 +491,10 @@ Choose correct COM port.
 
 ## Upload Steps
 
-### Step 1
-
-Connect ESP32 using USB cable.
-
-### Step 2
-
-Open Arduino IDE.
-
-### Step 3
-
-Load firmware `.ino` file.
-
-### Step 4
-
-Verify credentials:
+1. Connect ESP32 using USB cable
+2. Open Arduino IDE
+3. Load firmware `.ino` file
+4. Verify credentials:
 
 ```cpp
 ssid
@@ -538,17 +502,9 @@ password
 apiKey
 ```
 
-### Step 5
-
-Select board and port.
-
-### Step 6
-
-Click Upload.
-
-### Step 7
-
-Open Serial Monitor:
+5. Select board and port
+6. Click Upload
+7. Open Serial Monitor at:
 
 ```text
 115200 baud
