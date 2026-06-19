@@ -63,12 +63,9 @@ ESP32 processes sensor data and decides whether irrigation is needed.
 
 Relay controls the solenoid valve to allow or stop water flow.
 
+
 ## Dashboard Interface
-
-The dashboard provides real-time visualization of soil moisture percentage, relay control, historical logs, and telemetry monitoring.
-
 ![Dashboard](../images/dashboard.jpg)
-
 ## Hardware Prototype
 
 The physical implementation of the grow-bench system is shown below.
