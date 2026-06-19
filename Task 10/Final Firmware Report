@@ -63,12 +63,15 @@ ESP32 processes sensor data and decides whether irrigation is needed.
 
 Relay controls the solenoid valve to allow or stop water flow.
 
-
 ## Dashboard Interface
+
+The dashboard provides real-time visualization of telemetry and relay status.
+
 ![Dashboard](../images/dashboard.jpg)
+
 ## Hardware Prototype
 
-The physical implementation of the grow-bench system is shown below.
+Physical implementation of the grow-bench setup.
 
 ![Hardware Setup](../images/hardware.jpg)
 
@@ -124,8 +127,6 @@ Threshold used:
 const int DRY_THRESHOLD = 2000;
 ```
 
----
-
 ## Manual Override
 
 A physical push button toggles manual mode.
@@ -135,13 +136,7 @@ Manual mode behavior:
 * Press button once → enable manual mode
 * Press again → toggle valve state
 
-This allows testing without changing soil conditions.
-
----
-
 ## Serial Commands
-
-Three serial commands are supported.
 
 ### STATUS
 
@@ -168,11 +163,7 @@ Forces valve ON.
 
 Forces valve OFF.
 
----
-
 ## Web Server Control
-
-ESP32 runs a local HTTP server on port 80.
 
 Available endpoints:
 
@@ -182,13 +173,7 @@ Available endpoints:
 /status
 ```
 
-This allows browser-based control.
-
----
-
 ## Telemetry Upload
-
-The firmware uploads soil moisture data to Zelbytes cloud.
 
 Uploaded JSON:
 
@@ -202,20 +187,11 @@ Telemetry interval:
 
 * Every 3 seconds
 
-API headers:
-
-* Content-Type: application/json
-* X-Iot-Lab-Key: authentication key
-
 ---
 
 # 6. Calibration Methodology
 
-Calibration was performed by testing the sensor in two conditions.
-
 ## Dry Soil Test
-
-Sensor inserted in relatively dry soil.
 
 Observed reading:
 
@@ -223,19 +199,13 @@ Observed reading:
 1500
 ```
 
----
-
 ## Wet Soil Test
-
-Sensor inserted in wet soil.
 
 Observed reading:
 
 ```text
 2069
 ```
-
----
 
 ## Threshold Selection
 
@@ -249,10 +219,6 @@ Decision:
 
 * Above 2000 → dry enough to irrigate
 * Below 2000 → sufficient moisture
-
-### Observation
-
-This sensor showed inverted behavior compared to many common soil sensors, where wet readings are usually lower than dry readings.
 
 ---
 
@@ -296,13 +262,7 @@ Result:
 
 Status: PASS
 
----
-
 ## Test 2 – Automatic Irrigation
-
-Condition:
-
-* Soil value crossed threshold
 
 Result:
 
@@ -311,13 +271,7 @@ Result:
 
 Status: PASS
 
----
-
 ## Test 3 – Manual Override
-
-Condition:
-
-* Button pressed
 
 Result:
 
@@ -325,23 +279,13 @@ Result:
 
 Status: PASS
 
----
-
 ## Test 4 – Serial Commands
-
-Commands tested:
-
-* STATUS
-* FORCE_ON
-* FORCE_OFF
 
 Result:
 
 * All commands worked correctly
 
 Status: PASS
-
----
 
 ## Test 5 – Telemetry Upload
 
@@ -351,14 +295,7 @@ Observed HTTP response:
 202
 ```
 
-Interpretation:
-
-* Request accepted by server
-* Processing occurs asynchronously
-
 Status: PASS
-
----
 
 ## Test 6 – LED Status
 
@@ -375,83 +312,38 @@ Status: PASS
 
 ## Sensor Noise
 
-Soil sensor values may fluctuate slightly.
-
-Impact:
-
-* Relay may switch frequently near threshold
-
----
+Values may fluctuate near threshold.
 
 ## Relay Switching Delay
 
-Mechanical relay introduces switching delay.
-
-Impact:
-
-* Not ideal for fast control loops
-
----
+Mechanical relay adds delay.
 
 ## Button Debounce
 
-Current debounce uses:
+Current debounce:
 
 ```cpp
-delay(300)
+delay(300);
 ```
-
-Limitation:
-
-* Basic debounce only
-
-Better approach:
-
-* Interrupt or software debounce
-
----
 
 ## Wi-Fi Dependency
 
-Telemetry upload depends on Wi-Fi.
-
-If disconnected:
-
-* Cloud logging stops
-* Local automation still works
-
----
+Telemetry stops without Wi-Fi.
 
 ## Security Limitation
 
 Wi-Fi credentials are hardcoded.
 
-Problem:
-
-* Credentials exposed in source code
-
-Recommended:
-
-* Move credentials to secrets file
-
 ---
 
 # 10. Power Considerations
 
-ESP32 runs at:
-
-* 3.3V logic
-
-Relay:
-
-* 5V
-
-Solenoid valve:
-
-* External supply
+* ESP32 logic: 3.3V
+* Relay: 5V
+* Solenoid Valve: External supply
 
 Important:
-Valve should never be powered directly from ESP32 GPIO. Relay isolation protects controller.
+Valve should never be powered directly from ESP32 GPIO.
 
 ---
 
@@ -459,22 +351,14 @@ Valve should never be powered directly from ESP32 GPIO. Relay isolation protects
 
 ## Software Required
 
-Install:
-
 * Arduino IDE
 * ESP32 board package
 
----
-
 ## Required Libraries
-
-Install these libraries:
 
 * WiFi
 * HTTPClient
 * WebServer
-
----
 
 ## Board Settings
 
@@ -482,25 +366,14 @@ Install these libraries:
 Board: ESP32 Dev Module
 ```
 
-Choose correct COM port.
-
----
-
 ## Upload Steps
 
-1. Connect ESP32 using USB cable
+1. Connect ESP32 via USB
 2. Open Arduino IDE
-3. Load firmware `.ino` file
-4. Verify credentials:
-
-```cpp
-ssid
-password
-apiKey
-```
-
+3. Load `.ino` file
+4. Verify credentials
 5. Select board and port
-6. Click Upload
+6. Upload firmware
 7. Open Serial Monitor at:
 
 ```text
@@ -519,13 +392,11 @@ Web Server Started
 
 # 12. Future Improvements
 
-Possible upgrades:
-
 * Cloud dashboard
-* OTA firmware updates
+* OTA updates
 * Better moisture sensor
 * Mobile app
-* Historical data graphs
+* Historical graphs
 * PID irrigation control
 * Multiple plant zones
 
@@ -533,7 +404,7 @@ Possible upgrades:
 
 # 13. Conclusion
 
-The grow-bench firmware successfully achieved all major objectives. The ESP32-based system performs automatic irrigation using soil moisture sensing while also supporting manual override and remote monitoring.
+The grow-bench firmware successfully achieved all major objectives. The ESP32-based system performs automatic irrigation using soil moisture sensing while supporting manual override and remote monitoring.
 
 Key achievements:
 
@@ -543,4 +414,4 @@ Key achievements:
 * Web server control
 * Serial debugging tools
 
-The firmware is stable and ready for future expansion in advanced smart agriculture applications.
+The firmware is stable and ready for future expansion in smart agriculture applications.
