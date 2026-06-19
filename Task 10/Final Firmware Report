@@ -17,61 +17,59 @@
 
 # 1. Project Overview
 
-This project implements the final firmware for an automated grow-bench irrigation system using an ESP32 microcontroller. The system continuously monitors soil moisture and automatically controls irrigation through a solenoid valve using relay switching.
+This project implements an automated grow-bench irrigation system using an ESP32 microcontroller. The system continuously monitors soil moisture and automatically controls irrigation through a relay-driven solenoid valve.
 
-The firmware supports both automatic irrigation and manual override modes. Additional features include telemetry upload to the Zelbytes IoT Lab cloud API, serial monitoring commands, and a local web server for remote control.
-
-Main goals of the project:
+Main objectives:
 
 * Monitor soil moisture in real time
 * Automatically irrigate when soil becomes dry
-* Allow manual override using button or commands
+* Allow manual override using button and commands
 * Upload telemetry to cloud server
-* Provide remote control via browser
+* Enable remote browser-based control
 
 ---
 
 # 2. Hardware Bill of Materials (BOM)
 
-| Component             | Quantity | Purpose                 |
-| --------------------- | -------: | ----------------------- |
-| ESP32 Dev Board       |        1 | Main microcontroller    |
-| Soil Moisture Sensor  |        1 | Detects soil dryness    |
-| Relay Module          |        1 | Controls solenoid valve |
-| Solenoid Valve        |        1 | Controls water flow     |
-| Push Button           |        1 | Manual override         |
-| LED                   |        1 | Status indicator        |
-| 220Ω Resistor         |        1 | LED current limiting    |
-| Jumper Wires          | Multiple | Connections             |
-| External Power Supply |        1 | Power for valve         |
+| Component             | Quantity | Purpose              |
+| --------------------- | -------: | -------------------- |
+| ESP32 Dev Board       |        1 | Main controller      |
+| Soil Moisture Sensor  |        1 | Detect soil moisture |
+| Relay Module          |        1 | Controls valve       |
+| Solenoid Valve        |        1 | Water flow control   |
+| Push Button           |        1 | Manual override      |
+| LED                   |        1 | Status indicator     |
+| 220Ω Resistor         |        1 | LED protection       |
+| Jumper Wires          | Multiple | Connections          |
+| External Power Supply |        1 | Valve power          |
 
 ---
 
 # 3. Hardware Architecture
 
-The system contains three major sections.
+The system consists of sensor, control, and actuation layers.
 
 ## Sensor Layer
 
-The soil moisture sensor reads analog moisture values and sends them to ESP32.
+The soil moisture sensor continuously measures moisture level and sends analog values to ESP32.
 
 ## Control Layer
 
-ESP32 processes sensor data and decides whether irrigation is needed.
+ESP32 processes sensor data and compares it with the threshold to decide irrigation state.
 
 ## Actuation Layer
 
-Relay controls the solenoid valve to allow or stop water flow.
+Relay controls the solenoid valve to start or stop irrigation.
 
 ## Dashboard Interface
 
-The dashboard provides real-time visualization of telemetry and relay status.
+The dashboard displays soil moisture telemetry and system status.
 
 ![Dashboard](../images/dashboard.jpg)
 
 ## Hardware Prototype
 
-Physical implementation of the grow-bench setup.
+Physical hardware setup of the grow bench.
 
 ![Hardware Setup](../images/hardware.jpg)
 
@@ -95,79 +93,61 @@ Physical implementation of the grow-bench setup.
 
 * One side → GPIO27
 * Other side → GND
-* Configured with `INPUT_PULLUP`
+* Uses INPUT_PULLUP
 
 ## LED
 
-* Anode → GPIO2 through 220Ω resistor
+* Anode → GPIO2 via 220Ω resistor
 * Cathode → GND
 
 ## Solenoid Valve
 
-* Valve Positive → External Supply +
-* Valve Negative → Relay NO
+* Valve + → External Supply +
+* Valve − → Relay NO
 * Relay COM → Supply −
 
 ---
 
-# 5. Firmware Features
+# 5. Methodology
+
+The Smart Grow Bench system was developed by first assembling the hardware components and connecting them to the ESP32. Firmware was then written in Arduino IDE to read soil moisture values and control irrigation automatically. The soil sensor was calibrated under dry and wet conditions to determine a suitable threshold. Manual override, telemetry upload, and web control features were implemented. Finally, the system was tested under multiple conditions to verify correct operation.
+
+---
+
+# 6. Firmware Features
 
 ## Automatic Irrigation
 
-The ESP32 reads soil moisture continuously.
+When soil becomes dry, irrigation turns ON automatically.
 
-Logic:
+Threshold:
 
-* If soil value exceeds threshold → irrigation ON
-* Otherwise → irrigation OFF
-
-Threshold used:
-
-```cpp
+```cpp id="9wz45l"
 const int DRY_THRESHOLD = 2000;
 ```
 
+Logic:
+
+* Above threshold → Valve ON
+* Below threshold → Valve OFF
+
 ## Manual Override
 
-A physical push button toggles manual mode.
-
-Manual mode behavior:
-
-* Press button once → enable manual mode
-* Press again → toggle valve state
+Button allows manual control of valve.
 
 ## Serial Commands
 
-### STATUS
+Supported commands:
 
-Displays:
-
-* Soil moisture percentage
-* Pump/valve state
-* Current mode
-
-Example output:
-
-```text
-=== STATUS ===
-Soil Moisture %: 51
-Pump: ON
-Mode: AUTO
+```text id="9jfru1"
+STATUS
+FORCE_ON
+FORCE_OFF
 ```
 
-### FORCE_ON
+## Web Server Endpoints
 
-Forces valve ON.
-
-### FORCE_OFF
-
-Forces valve OFF.
-
-## Web Server Control
-
-Available endpoints:
-
-```text
+```text id="p8xh2m"
 /on
 /off
 /status
@@ -177,73 +157,73 @@ Available endpoints:
 
 Uploaded JSON:
 
-```json
+```json id="7f7g6h"
 {
   "soil_moisture_pct": 52
 }
 ```
 
-Telemetry interval:
+Upload interval:
 
 * Every 3 seconds
 
 ---
 
-# 6. Calibration Methodology
+# 7. Calibration Methodology
 
-## Dry Soil Test
+Calibration was performed under two soil conditions.
 
-Observed reading:
+## Dry Soil
 
-```text
+Observed value:
+
+```text id="lygm5w"
 1500
 ```
 
-## Wet Soil Test
+## Wet Soil
 
-Observed reading:
+Observed value:
 
-```text
+```text id="1m6o33"
 2069
 ```
 
-## Threshold Selection
-
 Chosen threshold:
 
-```text
+```text id="6vkgpt"
 2000
 ```
 
 Decision:
 
-* Above 2000 → dry enough to irrigate
-* Below 2000 → sufficient moisture
+* Above 2000 → Dry
+* Below 2000 → Wet
 
 ---
 
-# 7. Control Logic
+# 8. Control Logic
 
-Main loop sequence:
+System workflow:
 
-1. Read analog soil value
-2. Convert to moisture percentage
-3. Check button input
+1. Read soil sensor
+2. Convert to percentage
+3. Check button state
 4. Process auto/manual mode
-5. Update relay and LED
-6. Process serial commands
+5. Control relay and LED
+6. Read serial commands
 7. Upload telemetry
-8. Delay 3 seconds
+8. Wait 3 seconds
 
 Pseudo flow:
 
-```text
+```text id="uwog0r"
 Read Sensor
    ↓
-Check Manual Mode?
+Check Mode
    ↓
-YES → Keep Manual State
-NO  → Compare Threshold
+AUTO → Compare Threshold
+MANUAL → Keep State
    ↓
 Control Relay
    ↓
@@ -252,104 +232,88 @@ Upload Telemetry
 
 ---
 
-# 8. Test Results
+# 9. Test Results
 
-## Test 1 – Soil Reading
+## Test 1 – Sensor Reading
 
-Result:
-
-* Sensor successfully produced analog readings
-
-Status: PASS
+PASS
+Sensor values read successfully.
 
 ## Test 2 – Automatic Irrigation
 
-Result:
-
-* Relay activated
-* Solenoid valve opened
-
-Status: PASS
+PASS
+Relay activated when threshold crossed.
 
 ## Test 3 – Manual Override
 
-Result:
-
-* Valve toggled manually
-
-Status: PASS
+PASS
+Button toggled valve correctly.
 
 ## Test 4 – Serial Commands
 
-Result:
-
-* All commands worked correctly
-
-Status: PASS
+PASS
+All commands worked.
 
 ## Test 5 – Telemetry Upload
 
 Observed HTTP response:
 
-```text
+```text id="ctvv6a"
 202
 ```
 
-Status: PASS
+PASS
+Server accepted data.
 
 ## Test 6 – LED Status
 
-Result:
-
-* LED ON when valve active
-* LED OFF when valve inactive
-
-Status: PASS
+PASS
+LED reflected valve state.
 
 ---
 
-# 9. Known Limitations
+# 10. Known Limitations
 
 ## Sensor Noise
 
-Values may fluctuate near threshold.
+Values fluctuate near threshold.
 
-## Relay Switching Delay
+## Relay Delay
 
-Mechanical relay adds delay.
+Mechanical relay has switching delay.
 
 ## Button Debounce
 
 Current debounce:
 
-```cpp
+```cpp id="l4th38"
 delay(300);
 ```
 
 ## Wi-Fi Dependency
 
-Telemetry stops without Wi-Fi.
+Cloud telemetry stops without internet.
 
-## Security Limitation
+## Security
 
 Wi-Fi credentials are hardcoded.
 
 ---
 
-# 10. Power Considerations
+# 11. Power Considerations
 
 * ESP32 logic: 3.3V
 * Relay: 5V
-* Solenoid Valve: External supply
+* Valve: External supply
 
 Important:
-Valve should never be powered directly from ESP32 GPIO.
+Never power solenoid valve directly from ESP32 GPIO.
 
 ---
 
-# 11. Firmware Reflash Instructions for Next Intern
+# 12. Reflash Instructions for Next Intern
 
-## Software Required
+## Required Software
 
 * Arduino IDE
 * ESP32 board package
@@ -360,10 +324,10 @@ Valve should never be powered directly from ESP32 GPIO.
 * HTTPClient
 * WebServer
 
-## Board Settings
+## Board Setting
 
-```text
-Board: ESP32 Dev Module
+```text id="0mb8f1"
+ESP32 Dev Module
 ```
 
 ## Upload Steps
@@ -371,18 +335,18 @@ Board: ESP32 Dev Module
 1. Connect ESP32 via USB
 2. Open Arduino IDE
 3. Load `.ino` file
-4. Verify credentials
-5. Select board and port
-6. Upload firmware
+4. Check credentials
+5. Select board & port
+6. Upload
 7. Open Serial Monitor at:
 
-```text
+```text id="5z1dm6"
 115200 baud
 ```
 
 Expected output:
 
-```text
+```text id="5vnd07"
 WiFi Connected
 ESP32 IP Address: ...
 Web Server Started
@@ -390,28 +354,18 @@ Web Server Started
 
 ---
 
-# 12. Future Improvements
+# 13. Future Improvements
 
-* Cloud dashboard
+Possible upgrades:
+
 * OTA updates
-* Better moisture sensor
+* Better sensor
 * Mobile app
 * Historical graphs
-* PID irrigation control
-* Multiple plant zones
+* Multiple irrigation zones
 
 ---
 
-# 13. Conclusion
+# 14. Conclusion
 
-The grow-bench firmware successfully achieved all major objectives. The ESP32-based system performs automatic irrigation using soil moisture sensing while supporting manual override and remote monitoring.
-
-Key achievements:
-
-* Automated irrigation
-* Manual override
-* Cloud telemetry
-* Web server control
-* Serial debugging tools
-
-The firmware is stable and ready for future expansion in smart agriculture applications.
+The Smart Grow Bench Irrigation System successfully achieved automated irrigation using ESP32 and soil moisture sensing. The system supports automatic control, manual override, telemetry upload, and web-based monitoring. The firmware is stable and ready for future improvements in smart agriculture applications.
