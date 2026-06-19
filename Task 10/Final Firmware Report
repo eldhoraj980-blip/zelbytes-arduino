@@ -93,7 +93,7 @@ Physical hardware setup of the grow bench.
 
 * One side → GPIO27
 * Other side → GND
-* Uses INPUT_PULLUP
+* Uses `INPUT_PULLUP`
 
 ## LED
 
@@ -122,7 +122,7 @@ When soil becomes dry, irrigation turns ON automatically.
 
 Threshold:
 
-```cpp id="9wz45l"
+```cpp
 const int DRY_THRESHOLD = 2000;
 ```
 
@@ -139,7 +139,7 @@ Button allows manual control of valve.
 
 Supported commands:
 
-```text id="9jfru1"
+```text
 STATUS
 FORCE_ON
 FORCE_OFF
@@ -147,7 +147,7 @@ FORCE_OFF
 
 ## Web Server Endpoints
 
-```text id="p8xh2m"
+```text
 /on
 /off
 /status
@@ -157,7 +157,7 @@ FORCE_OFF
 
 Uploaded JSON:
 
-```json id="7f7g6h"
+```json
 {
   "soil_moisture_pct": 52
 }
@@ -177,7 +177,7 @@ Calibration was performed under two soil conditions.
 
 Observed value:
 
-```text id="lygm5w"
+```text
 1500
 ```
 
@@ -185,13 +185,13 @@ Observed value:
 
 Observed value:
 
-```text id="1m6o33"
+```text
 2069
 ```
 
 Chosen threshold:
 
-```text id="6vkgpt"
+```text
 2000
 ```
 
@@ -217,7 +217,7 @@ System workflow:
 
 Pseudo flow:
 
-```text id="uwog0r"
+```text
 Read Sensor
    ↓
 Check Mode
@@ -258,7 +258,7 @@ All commands worked.
 
 Observed HTTP response:
 
-```text id="ctvv6a"
+```text
 202
 ```
 
@@ -286,7 +286,7 @@ Mechanical relay has switching delay.
 
 Current debounce:
 
-```cpp id="l4th38"
+```cpp
 delay(300);
 ```
 
@@ -326,7 +326,7 @@ Never power solenoid valve directly from ESP32 GPIO.
 
 ## Board Setting
 
-```text id="0mb8f1"
+```text
 ESP32 Dev Module
 ```
 
@@ -340,13 +340,13 @@ ESP32 Dev Module
 6. Upload
 7. Open Serial Monitor at:
 
-```text id="5z1dm6"
+```text
 115200 baud
 ```
 
 Expected output:
 
-```text id="5vnd07"
+```text
 WiFi Connected
 ESP32 IP Address: ...
 Web Server Started
